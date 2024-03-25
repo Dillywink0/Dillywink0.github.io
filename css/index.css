@@ -1,0 +1,154 @@
+body {
+    margin: 0;
+    padding: 0;
+  }
+  
+  #viewport {
+    bottom: 0;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+  
+  .page {
+    height: 100%;
+    position: relative;
+    width: 100%;
+  }
+  
+  .landing.page {
+    background: var(--back);
+  }
+  
+  .landing.page .info {
+    position: absolute;
+    top: 27%;
+    width: 100%;
+  }
+  .landing.page .info .name {
+    color: var(--text-main);
+    font-family: "Montserrat", sans-serif;
+    font-size: 7em;
+    font-weight: 400;
+    text-align: center;
+    text-transform: uppercase;
+  }
+  .landing.page .info .email {
+    font-family: "Roboto", sans-serif;
+    font-size: 3em;
+    font-weight: 300;
+    letter-spacing: 0.12em;
+    text-align: center;
+    unicode-bidi: bidi-override;
+  }
+  
+  #theme-toggle {
+    color: var(--text-main);
+    font-size: 1.3em;
+    left: 30px;
+    position: absolute;
+    top: 20px;
+  }
+  
+  .icons {
+    background-color: transparent;
+    bottom: 20px;
+    display: block;
+    font-size: 1.3em;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    text-align: center;
+    width: 100%;
+  }
+  
+  a {
+    color: var(--text-alt);
+    text-decoration: none;
+  }
+  
+  a:hover {
+    color: var(--text-main);
+    text-decoration: none;
+  }
+  
+  li {
+    display: inline-block;
+  }
+  li a {
+    color: var(--text-alt);
+    padding: 5px;
+  }
+  li a:hover {
+    color: var(--text-main);
+  }
+  
+  @media only screen and (min-width: 660px) and (max-width: 965px) {
+    .landing.page .info .name {
+      font-size: 6em;
+      font-weight: 200;
+    }
+    .landing.page .info .email {
+      font-size: 3em;
+      font-weight: 100;
+      letter-spacing: 0.07em;
+      unicode-bidi: bidi-override;
+    }
+  }
+  @media only screen and (min-width: 200px) and (max-width: 660px) {
+    .landing.page .info .name {
+      font-size: 3em;
+      font-weight: 200;
+    }
+    .landing.page .info .email {
+      font-size: 1.5em;
+      font-weight: 100;
+      letter-spacing: 0.07em;
+      unicode-bidi: bidi-override;
+    }
+    .icons {
+      background-color: transparent;
+      bottom: 10px;
+      font-size: 1.3em;
+      margin: 10px;
+      padding: 5px;
+      position: absolute;
+      right: 10px;
+      text-align: right;
+      width: 20%;
+    }
+    li {
+      display: block;
+    }
+  }
+  @media only screen and (max-width: 812px) and (max-height: 375px) {
+    .landing.page .info .name {
+      font-size: 3em;
+      font-weight: 200;
+    }
+    .landing.page .info .email {
+      font-size: 1.5em;
+      font-weight: 100;
+      letter-spacing: 0.07em;
+      unicode-bidi: bidi-override;
+    }
+    .icons {
+      background-color: transparent;
+      bottom: 10px;
+      font-size: 1.3em;
+      margin: 10px;
+      padding: 5px;
+      position: absolute;
+      right: 10px;
+      text-align: right;
+      width: 20%;
+    }
+    li {
+      display: block;
+    }
+  }
+  
+  /*# sourceMappingURL=index.css.map */
+  

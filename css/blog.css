@@ -1,0 +1,117 @@
+/* Global Styles */
+body {
+    font-family: 'Lato', sans-serif; /* Use Lato font for body text */
+    line-height: 1.6;
+    color: #333; /* Set default text color */
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9; /* Set a light background color */
+}
+
+a {
+    color: #007bff; /* Change link color to a more vibrant blue */
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline; /* Add underline on hover */
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto; /* Center align content */
+}
+
+/* Header Styles */
+header {
+    background-color: #ffffff; /* White background for header */
+    padding: 20px 0;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Add subtle shadow */
+}
+
+.bar ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.bar li {
+    display: inline;
+    margin-right: 20px; /* Add spacing between menu items */
+}
+
+.bar a {
+    color: #333;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+/* Main Content Styles */
+main {
+    background-color: #ffffff; /* White background for main content */
+    padding: 20px;
+    margin-top: 20px; /* Add space between header and main content */
+}
+
+article {
+    margin-bottom: 20px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: #333; /* Set heading colors to default */
+}
+
+hr.sep {
+    border: 0;
+    height: 1px;
+    background-color: #ddd; /* Light gray separator */
+    margin: 20px 0; /* Add space above and below separator */
+}
+
+/* Webring Styles */
+.webring .articles {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Use CSS grid for responsive layout */
+    gap: 20px; /* Add space between articles */
+}
+
+.webring .article {
+    background-color: #f5f5f5; /* Light gray background for articles */
+    padding: 20px;
+    border-radius: 5px; /* Add rounded corners */
+}
+
+.webring .article h4.title {
+    margin: 0;
+}
+
+.webring .article p.summary {
+    margin-top: 10px; /* Add space between title and summary */
+    font-size: 16px; /* Increase font size for summary */
+    color: #555; /* Dark gray text color */
+}
+
+.webring .article small.source {
+    color: #888; /* Light gray text color for source */
+}
+
+.webring .article small.date {
+    color: #888; /* Light gray text color for date */
+}
+
+/* Footer Styles */
+footer {
+    background-color: #333; /* Dark background for footer */
+    color: #fff; /* White text color for footer */
+    padding: 20px 0;
+    text-align: center;
+}
+
+.footer-link {
+    color: #fff; /* White text color for footer links */
+    margin: 0 10px; /* Add space between links */
+}
+
+.footer-link:hover {
+    text-decoration: underline; /* Add underline on hover */
+}
