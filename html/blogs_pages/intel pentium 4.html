@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="generator" content="Hugo 0.110.0">
+		<title>Intel Pentium 4</title>
+
+<link rel="stylesheet" href="/css/ui.css">
+
+		<script defer src="/blog/js/dark-mode.js"></script>
+		<link disabled id="dark-mode-theme" rel="stylesheet" href="/css/dark.css">
+		<link  rel="stylesheet" href="https://fonts.googleapis.com/css?family=Fira+Mono|Lato|Raleway">
+
+	</head>
+<body>
+<header class="container no-print">
+	<div class="u-header">
+		<nav class="bar">
+	<ul><li>
+			<a href="..">
+				<img class="icon-text" src="/blog/img/prev.svg"/>
+			</a>
+		</li><li><img class="icon-text" id="dark-mode-toggle" src="/blog/img/moon.svg" alt="Toggle Dark Mode"></a></li><li><a href="/index.html">Home</a></li><li><a href="/html/about.html">About</a></li><li><a href="/blog/posts">Archive</a></li><li><a href="/blog/work">Works</a></li><li><a href="/blog/tags">Tags</a></li></ul>
+</nav>
+
+	</div>
+</header>
+<main class="container">
+
+<article>
+	<header><hgroup id="brand">
+	<h1>Intel Pentium 4</h1>
+	<h5>
+		<time datetime="2022-05-31 00:00:00 &#43;0000 UTC">March 23, 2023</time>
+		<span class="no-print">
+	</h5>
+	
+</hgroup>
+<hr class="sep" />
+</header>
+	<p>The Pentium 4, which debuted in November 2000, marked a significant shift for Intel, as it introduced the first major new x86 microarchitecture since the Pentium Pro.
+     In the years leading up to the Pentium 4's release, Intel's P6 core, found in processors like the Pentium II and Pentium III, had dominated the market. During this time,
+      it became evident that higher clock speeds were a key selling point for processors. Intel took note of this trend, and as the team in Hillsboro, 
+      Oregon worked on the Pentium 4 (code-named Willamette), they prioritized achieving higher clock speeds.&hellip;</p>
+
+
+<P>the Pentium 4 represented a departure from the successful P6 microarchitecture, as Intel focused on maximizing clock speeds to meet market demand and stay competitive.</P>
+<h2 id="the-movie">Instruction Flow</h2>
+<p>One useful division that computer architects use when talking about CPUs is that of "front end" vs. "back end" or "execution engine." 
+  When instructions are fetched from the cache or main memory, they must be decoded and dispatched for execution.
+   This fetching, decoding and dispatching takes place in the processor's front end. </p>
+
+
+<p>Instructions make their way from the cache to the front end and down through the execution engine, which is where the actual work of number crunching gets done.
+   Once they leave the execution engine, their results are written back to main memory. This process, in which you FETCH the instruction from the cache, 
+   DECODE it into a form that the internals of the processor can understand, EXECUTE it, and WRITE its results back to memory makes up the basic,
+    four stage pipeline that all aspiring CPU architects learn in their undergraduate architecture courses. 
+    Each pipeline stage must take exactly one clock cycle to complete its business and send the instruction on to the next stage, 
+    so the more quickly all of the stages can do their thing the shorter the processor's clock cycle time (and the higher its clock speed or frequency) can be.</p>
+
+
+<p>This basic pipeline represents the "normal" path that instructions take through the processor, 
+  and as I just noted it assumes that all instructions spend only one cycle being EXECUTEd. 
+  While most processors do have one-cycle instructions (the P4 even has 0.5-cycle instructions), 
+  they also have some really complicated instructions that need to spend multiple cycles in the EXECUTE stage. 
+  To accommodate these multi-cycle instructions, the different functional units their own EXECUTE pipelines.</p>
+
+<h2 id="themes-from-a-box">Design </h2>
+<p>While some processors still have the classic, four stage pipeline described above, 
+  most modern CPUs are more complicated. The G4e breaks the classic, four-stage pipeline into seven stages in order to allow it to run at increased clock speeds on the same manufacturing process. 
+  Less work is done in each of the G4e's shorter stages but each stage takes less time to complete. Since each stage always lasts exactly one clock cycle, shorter pipeline stages mean shorter clock cycles and higher clock frequencies. 
+  The P4, with a whopping 20 stages in its basic pipeline, takes this tactic to the extreme.</p>
+
+<p>The drastic difference in pipeline depth between the G4e and the P4 actually reflects some very important differences in the design philosophies and goals of the two processors. 
+  Both processors want to run as many instructions as quickly as possible, but they attack this problem in two different ways. The G4e's approach can be summarized as "wide and shallow."
+   Its designers added more functional units to its back end for executing instructions, and its front end tries to fill up all these units by issuing instructions to each functional unit in parallel. 
+   In order to extract the maximum amount of instruction-level parallelism (ILP) from the (linear) instruction stream the G4e's front end first moves a small batch of instructions onto the chip. Then, its out-of-order (OOO) execution logic examines them for interdependencies, 
+   spreads them out to execute in parallel, and then pushes them through the execution engine's nine functional units. Each of the G4e's functional units has a fairly short pipeline, 
+   so the instructions take very few cycles to move through and finish executing. 
+   Finally, in the last pipeline stages the instructions are put back in their original program order before the results are written back to memory. </p>
+
+
+
+<h2 id="multiverse-of-dot-dot-dot-not-much">Overview</h2>
+<p>The P4's long pipeline means that bubbles take a long time to propagate off the CPU, 
+  so a single bubble results in a lot of wasted cycles. When the G4e's shorter pipeline has a bubble,
+  it propagates through to the other end quickly so that fewer cycles are wasted. So a single bubble in the P4's 20 stage pipeline wastes at least 20 clock cycles 
+  (more if it's a bubble in one of the longer FPU pipelines), whereas a single bubble in the G4e's 7 stage pipeline wastes at least 7 clock cycles. 
+  20 clock cycles is a lot of wasted work, and even if the P4's clock is running twice as fast as the 
+  G4e's it still takes a larger performance hit for each pipeline bubble than the shorter machine.</p>
+
+  <p>
+
+  </p>
+
+  <h2 id="multiverse-of-dot-dot-dot-not-much">Overview of P4's cache</h2>
+  <p>The P4's instruction cache takes translated, decoded ?ops that are primed and ready to be sent straight out to the OOO execution engine, 
+    and it arranges them into little mini-programs called "traces." These traces, and not the x86 code that was produced by the complier, 
+    are what the P4 executes whenever there's an L1 cache hit (which is over 90% of the time). 
+    As long as the needed code is in the L1 cache the P4's execution path looks as follows.</p>
+
+    <p>As the front end executes the stored traces, the trace cache sends up to 3 ?ops per cycle directly to the OOO execution engine, 
+      without the need for them to pass through any translation or decoding logic. Only when there's an L1 cache miss does that top part of the front end kick in in order to fetch and decode instructions from the L2 cache. 
+      The decoding and translating steps that are necessitated by a trace cache miss add another eight pipeline stages onto the beginning of the P4's pipeline, 
+      so you can see that the trace cache saves quite a few cycles over the course of a program's execution.</p>
+
+      <p>A interesting effect that the trace cache has on the P4's front end is that the whole issue of x86 translation/decode bandwidth is for the most part decoupled from the issue of dispatch bandwidth. 
+        If you'll recall from my K7 article, the K7 spends a lot of transistor resources on a turbocharged, 
+        beefed up x86 decoder so that it can translate enough clunky x86 instructions each cycle into MacroOps (the K7's version of ?ops) to keep the execution engine fed. 
+        With the P4, the fact that most of the time program code is fetched from the trace cache in the form of predigested ?ops means that a high bandwidth translator/decoder isn't necessary. 
+        The P4's decoding logic only has to kick on whenever there's an L1 cache miss, so it was designed to decode only one x86 instruction per clock cycle. 
+        This is one third the maximum theoretical decode bandwidth of the Athlon, but the P4's trace cache should allow it to meet or exceed the Athlon's real-world average of 2.5 dispatched instructions per clock cycle.</p>
+
+
+        <h2 id="multiverse-of-dot-dot-dot-not-much">Overview of the P4's architecture</h2>
+        <p>The breakdown of the various stages:</p>
+
+        <p>Stages 1 and 2 - Trace Cache next Instruction Pointer: In these stages, the P4's trace cache fetch logic gets a pointer to the next instruction?in the trace cache.</p>
+
+        <p>Stages 3 and 4 - Trace Cache Fetch: These two stages fetch an instruction from the trace cache to be sent to the OOO execution engine.</p>
+      
+        <p>Stage 5 - Drive: This is the first of two of Drive stages in the P4's pipeline, each of which is dedicated to driving signals from one part of the processor to the next.
+           The P4 runs so fast that sometimes a signal can't make it all the way to where it needs to be in a single clock pulse, 
+           so the P4 dedicates some pipeline stages to letting these signals propagate across the chip. I've actually never seen a "Drive" stage in a pipeline before, 
+           and neither has anyone else whose P4 write-ups I've read. I think this may be a first.
+            It's definitely there because the P4's designers intend for it to reach such stratospheric clock speeds that stages like this are absolutely necessary.</p>
+
+      <p>Stages 6 through 8 - Allocate and Rename: This group of stages handles the allocation of microarchitectural register resources. 
+        Most of you are probably familiar with the use of register renaming as a trick for alleviating register conflicts by having more registers in the microarchitecture than are specified in the instruction set architecture (ISA). 
+        These extra microarchitectural registers (the P4 has 128 of them) are allocated and put into use in these steps.</p>
+      
+      <p>Stage 9 - Queue: There are two main queues that sit between the Allocator/Renamer and the scheduling logic, a memory uop queue and an arithmetic uop queue. 
+        These queues are where uops wait before being sent off to one of the four "dispatch ports" that act as gateways to the execution engine's functional units.</p>
+      
+      <p>Stages 10 through 12 - Schedule: In these stages, instructions pass from the Allocator to one of four scheduling main scheduling queues. 
+        These queues, roughly analogous to the G4e's three different issue queues, are where operations for each individual functional unit (or group of related functional units) are scheduled to go onstage and be executed. 
+        Here's a quote from an Intel document that sums up the schedulers' functions:?</p>
+      
+      <p>Stages 13 and 14 - Dispatch: In these two stages instructions travel through one of the four dispatch ports for execution. 
+        These ports act sort of as gateways to the actual execution units. 
+        Up to 6 uops total per cycle can travel from the schedulers through the dispatch ports to the functional units. 
+        This is more uops per cycle than the front end can execute (3 per cycle) or the back end can retire (3 per cycle), 
+        but that's ok because it gives the machine some headroom in its middle so that it can have bursts of activity.</p>
+      
+      <p>Stages 15 and 16 - Register Files: After traveling through the dispatch ports in the last two stages, the instructions spend these two stages being loaded into the register files for execution.?</p>
+      
+      <p>Stage 17 - Execute: In this stage, the instructions are actually executed by the execution engine's functional units.</p>
+      
+      <p>Stage 18 - Flags: If the instruction's outcome stipulates that it needs to set any flags, then it does so at this stage.</p>
+      
+      <p>Stage 19 - Branch Check: Here's where the P4 checks the outcome of a conditional branch to see if it has just wasted 19 cycles of its time executing some code that it'll have to throw away. By Stage 19, the condition has been evaluated and the front end knows whether or not the branch predictor's guess was right or not.?</p>
+
+      <p>Stage 20 - Drive: We've already met the Drive stage. Again, this stage is dedicated to propagating signals across the chip.</p>
+      
+
+</article>
+
+<section class="webring">
+  <h3>Articles from blogs I follow around the net</h3>
+  <section class="articles">
+    
+    <div class="article">
+      <h4 class="title">
+        <a href="http://xenodium.com/sprinkle-me-logs" target="_blank" rel="noopener">Sprinkle me logs</a>
+      </h4>
+      <p class="summary">
+
+ 
+   18 May 2023 Sprinkle me logs
+ 
+ 
+At times, basic prints/logs are just about the right debugging strategy. Sure, we have debuggers and  REPLs which are super useful, but sometimes you just know that sprinkling your code with a handful of temporary prints/…</p>
+      <small class="source">
+        via <a href="http://xenodium.com">Alvaro Ramirez&#39;s notes</a>
+      </small>
+      <small class="date">May 18, 2023</small>
+    </div>
+    
+    <div class="article">
+      <h4 class="title">
+        <a href="https://www.rousette.org.uk/archives/current-command-line-setup/" target="_blank" rel="noopener">Current command line setup</a>
+      </h4>
+      <p class="summary">I’ve made quite a few changes recently to my terminal/command line set up, and come across some interesting tools, so I thought it would be worth writing a quick update post.
+Kitty terminal
+This is probably the biggest change to my command line workflows. I…</p>
+      <small class="source">
+        via <a href="https://www.rousette.org.uk/">but she&#39;s a girl...</a>
+      </small>
+      <small class="date">May 14, 2023</small>
+    </div>
+    
+    <div class="article">
+      <h4 class="title">
+        <a href="https://nullprogram.com/blog/2023/04/29/" target="_blank" rel="noopener">My favorite C compiler flags during development</a>
+      </h4>
+      <p class="summary">
+      This article was discussed on Hacker News and on reddit.
+
+The major compilers have an enormous number of knobs. Most are
+highly specialized, but others are generally useful even if uncommon. For
+warnings, the venerable -﻿Wall -﻿Wextra is a good start, but
+…</p>
+      <small class="source">
+        via <a href="https://nullprogram.com">null program</a>
+      </small>
+      <small class="date">April 29, 2023</small>
+    </div>
+    
+  </section>
+  <p class="attribution">
+    Generated by
+    <a href="https://git.sr.ht/~sircmpwn/openring">openring</a>
+  </p>
+</section>
+<style>
+.webring .articles {
+  display: flex;
+  flex-wrap: wrap;
+  margin: -0.5rem;
+}
+.webring .title {
+  margin: 0;
+}
+.webring .article {
+  flex: 1 1 0;
+  display: flex;
+  flex-direction: column;
+  margin: 0.5rem;
+  padding: 0.5rem;
+  background: #eee;
+  min-width: 10rem;
+}
+.webring .summary {
+  font-size: 1rem;
+  flex: 1 1 0;
+}
+.webring .attribution {
+  text-align: right;
+  font-size: 0.8rem;
+  color: #555;
+}
+</style>
+
+			<hr class="sep" />
+		</main>
+		<footer class="container no-print">
+			<div class="u-footer">
+				
+
+<a href="mailto:jeetelongname@gmail.com"><img class="icon-social" src="/blog/img/email.svg" alt="Email Me!"/></a>
+
+
+<a href="https://github.com/jeetelongname"><img class="icon-social" src="/blog/img/github.svg" alt="Github"/></a>
+
+
+<a href="https://www.jeetelongname.net/blog/index.xml" target="_blank"><img class="icon-social" src="/blog/img/feed.svg" alt="Feed"></a>
+
+
+				<p>
+					
+					Theme used: <a href="https://github.com/yursan9/manis-hugo-theme">Manis</a><br>
+					
+					
+					&copy 2024 Dillon Clark
+					
+					
+				</p>
+				
+				<a href="#brand">
+					<img class="icon-text" src="/blog/img/toup.svg" alt="To Up"/>
+					<span>Back to Up</span>
+				</a>
+				
+			</div>
+		</footer>
+		
+		<script>hljs.initHighlightingOnLoad();</script>
+		
+	</body>
+</html>
+

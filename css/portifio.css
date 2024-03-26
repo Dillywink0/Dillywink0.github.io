@@ -46,3 +46,26 @@ body {
         width: 100%;
     }
 }
+/* Header Styles */
+header {
+    background-color: #ffffff; /* White background for header */
+    padding: 20px 0;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Add subtle shadow */
+}
+
+.bar ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.bar li {
+    display: inline;
+    margin-right: 20px; /* Add spacing between menu items */
+}
+
+.bar a {
+    color: #333;
+    font-weight: bold;
+    text-transform: uppercase;
+}

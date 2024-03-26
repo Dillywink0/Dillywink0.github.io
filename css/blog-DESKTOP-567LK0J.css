@@ -1,0 +1,88 @@
+/* Resetting default browser styles */
+body, h1, h2, h3, h4, h5, h6, p, ul, li {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  
+  /* Setting up basic styles */
+  body {
+    font-family: 'Lato', sans-serif;
+    line-height: 1.6;
+    color: #333;
+  }
+  
+  .container {
+    width: 80%;
+    margin: 0 auto;
+  }
+  
+  /* Navigation bar styles */
+  .bar {
+    background-color: #333;
+    overflow: hidden;
+  }
+  
+  .bar ul {
+    margin: 0;
+    padding: 0;
+  }
+  
+  .bar li {
+    float: left;
+  }
+  
+  .bar li a {
+    display: block;
+    color: #fff;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+  }
+  
+  .bar li a:hover {
+    background-color: #555;
+  }
+  
+  /* Header styles */
+  #brand {
+    margin-top: 30px;
+  }
+  
+  #brand h1 {
+    font-family: 'Raleway', sans-serif;
+    font-size: 36px;
+    color: #333;
+  }
+  
+  #brand h5 {
+    font-family: 'Fira Mono', monospace;
+    font-size: 18px;
+    color: #666;
+  }
+  
+  .sep {
+    margin-top: 30px;
+  }
+  
+  /* Footer styles */
+  footer {
+    margin-top: 50px;
+    text-align: center;
+    color: #777;
+  }
+  
+  /* Dark mode toggle icon */
+  .icon-text {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+  }
+  
+  /* Mobile responsiveness */
+  @media screen and (max-width: 600px) {
+    .container {
+      width: 100%;
+    }
+  }
+  
