@@ -20,7 +20,7 @@ nav ul {
   visibility: hidden;
   pointer-events: none;
   list-style: none;
-  max-width: 70px;
+  width: 70px;
   /* Make the menu scrollable on mobile */
   overflow-y: auto;
   max-height: calc(100vh - 60px); /* Adjust based on your header height */
