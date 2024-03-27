@@ -16,12 +16,12 @@ nav {
 nav ul {
   position: fixed;
   top: 60px;
-  right: 10px; /* Adjust this value as needed */
+  right: 5px;
   height: 100vh;
   visibility: hidden;
   pointer-events: none;
   list-style: none;
-  max-width: 44px;
+  max-width: 80vw; /* Set a maximum width relative to the viewport width */
 }
 
 nav ul li {
