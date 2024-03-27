@@ -23,8 +23,7 @@ nav ul {
   visibility: hidden;
   pointer-events: none;
   list-style: none;
-  max-width: 80vw; /* Set a maximum width relative to the viewport width */
-  
+  max-width: 80vw; /* Set a maximum width relative to the viewport width */ 
 }
 
 nav ul li {
@@ -42,7 +41,7 @@ nav.active ul {
   pointer-events: initial;
   -webkit-transition-delay: 0.2s;
   transition-delay: 0.2s;
-  overflow-y: auto;
+  
 }
 
 .nav-icon {
