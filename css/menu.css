@@ -16,7 +16,7 @@ nav {
 nav ul {
   position: fixed;
   top: 60px;
-  right: 0.5px;
+  right: 10px; /* Adjust this value as needed */
   height: 100vh;
   visibility: hidden;
   pointer-events: none;
