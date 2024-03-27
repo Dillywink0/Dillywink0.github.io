@@ -18,7 +18,7 @@ nav ul {
   top: 60px;
   right: 30px;
   margin-right: 5px;
-  height: auto;
+  min-height: 50px; /* Set a minimum height to accommodate content */
   max-height: calc(100vh - 60px);
   visibility: hidden;
   pointer-events: none;
