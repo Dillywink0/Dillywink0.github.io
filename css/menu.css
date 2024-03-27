@@ -22,6 +22,8 @@
     pointer-events: none;
     list-style: none;
     width: 35px;
+    overflow-y: auto;
+  max-height: calc(100vh - 60px);
   }
   
   nav ul li {
@@ -32,6 +34,7 @@
     -webkit-writing-mode: vertical-lr;
     -ms-writing-mode: tb-lr;
     writing-mode: vertical-lr;
+    padding: 1em 0.5em;
   }
   
   nav.active ul {
