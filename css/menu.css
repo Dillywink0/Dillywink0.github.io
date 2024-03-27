@@ -16,23 +16,32 @@ nav ul {
   position: fixed;
   top: 60px; /* Adjust based on your header height */
   right: 5px;
+  height: 100vh;
   visibility: hidden;
   pointer-events: none;
   list-style: none;
-  width: 150px; /* Adjust the width as needed */
-  background-color: white; /* Add a background color */
-  border: 1px solid #ccc; /* Add a border for clarity */
-  padding: 10px 0; /* Add padding to the dropdown menu */
-  margin-top: 5px; /* Adjust the margin to give space below the header */
-  max-height: calc(100vh - 70px); /* Adjust based on header and footer height */
-  overflow-y: auto; /* Add scrollbar if content exceeds max height */
+  max-width: 70px;
+  /* Make the menu scrollable on mobile */
+  overflow-y: auto;
+  max-height: calc(100vh - 60px); /* Adjust based on your header height */
 }
 
 nav ul li {
   font: bold 1rem "Work Sans", "Arial Black", Gadget, sans-serif;
   text-transform: uppercase;
   letter-spacing: 2px;
-  padding: 10px 20px; /* Adjust padding to give space around each menu item */
+  padding: 1em 0.5em; /* Adjust padding to give space around each menu item */
+  -webkit-writing-mode: vertical-lr;
+  -ms-writing-mode: tb-lr;
+  writing-mode: vertical-lr;
+  
+}
+
+nav.active ul {
+  visibility: visible;
+  pointer-events: initial;
+  -webkit-transition-delay: 0.2s;
+  transition-delay: 0.2s;
 }
 
 .nav-icon {
@@ -46,6 +55,8 @@ nav ul li {
   position: fixed;
   top: 15px;
   right: 15px;
+  -webkit-transition: background 0.3s;
+  transition: background 0.3s;
   width: 35px;
 }
 
@@ -86,4 +97,3 @@ nav ul li {
   -webkit-transform: rotate(90deg);
   transform: rotate(90deg);
 }
-
