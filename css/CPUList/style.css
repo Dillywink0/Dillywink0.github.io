@@ -1,0 +1,47 @@
+.piece4bg {
+	background-image: url(images/piece_04.gif);
+	background-repeat: repeat-x;
+}
+.piece6bg {
+	background-image: url(images/piece_07.gif);
+	background-repeat: repeat-x;
+	text-align: center;
+}
+body {
+	margin: 0px;
+	font-family: Arial, Helvetica, sans-serif;
+
+}
+a:link {
+	color: #000066;
+	text-decoration: underline;
+}
+a:visited {
+	color: #000066;
+	text-decoration: underline;
+}
+a:hover {
+	color: #000066;
+	text-decoration: underline;
+
+}
+a:active {
+	color: #000066;
+	text-decoration: none;
+}
+.maintable {
+	margin-right: 10px;
+	margin-left: 10px;
+}
+.bottombar {
+	background-image: url(images/bottombar.gif);
+	background-repeat: repeat-x;
+}
+.black_grad {
+	font-weight:bold;
+	font-size:14px;
+	font-family:arial;
+	color:#666666;
+	background-color:#EEEEEE;
+	FILTER: progid:dximagetransform.microsoft.gradient(startcolorstr=#FFFFFF,endcolorstr=#000000,gradienttype=1);
+	}
