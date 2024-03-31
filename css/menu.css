@@ -1,4 +1,5 @@
 /* https://codepen.io/ines/details/LGKPqY */
+
 * {
   box-sizing: border-box;
   padding: 0;
@@ -95,4 +96,33 @@ nav.active ul {
 .active .nav-icon span {
   -webkit-transform: rotate(90deg);
   transform: rotate(90deg);
+}
+
+/* Media query for smaller screens */
+@media screen and (max-width: 2560px) {
+  nav ul {
+    top: 50px; /* Adjust the top position */
+    width: auto; /* Remove fixed width */
+    right: 0;
+    padding: 10px;
+    background-color: #fff; /* Add background color */
+    border-radius: 5px; /* Add some border-radius for better appearance */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add box shadow for better visibility */
+    max-height: calc(100vh - 50px); /* Adjust max height */
+  }
+
+  nav ul li {
+    writing-mode: horizontal-tb; /* Change writing mode to horizontal for horizontal layout */
+    padding: 0.5em 1em; /* Increase padding for better touch interaction */
+  }
+
+  .nav-icon {
+    top: 10px; /* Adjust top position */
+    right: 10px; /* Adjust right position */
+  }
+
+  .nav-icon span {
+    top: 50%;
+    transform: translateY(-50%);
+  }
 }
